@@ -11,8 +11,12 @@ use yii\captcha\Captcha;
 $this->title = 'Contact';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-contact">
-    <h1><?= Html::encode($this->title) ?></h1>
+
+<div class="page-title">
+	<h1><?= Html::encode($this->title) ?></h1>
+</div>
+
+<div class="panel">
 
     <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
 
@@ -33,10 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php else: ?>
 
-        <p>
-            If you have business inquiries or other questions, please fill out the following form to contact us.
-            Thank you.
-        </p>
+        <h4>If you have business inquiries or other questions, please fill
+			out the following form to contact us. Thank you.</h4>
 
         <div class="row">
             <div class="col-lg-5">

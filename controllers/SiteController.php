@@ -62,6 +62,57 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
+	
+	/**
+     * Displays science page.
+     *
+     * @return string
+     */
+    public function actionScience()
+    {
+        return $this->render('index');
+    }
+	
+	/**
+     * Displays tech page.
+     *
+     * @return string
+     */
+    public function actionTech()
+    {
+        return $this->render('index');
+    }
+	
+	/**
+     * Displays world page.
+     *
+     * @return string
+     */
+    public function actionWorld()
+    {
+        return $this->render('index');
+    }
+	
+	/**
+     * Displays politics page.
+     *
+     * @return string
+     */
+    public function actionPolitics()
+    {
+        return $this->render('index');
+    }
+	
+	/**
+     * Displays health page.
+     *
+     * @return string
+     */
+    public function actionHealth()
+    {
+        return $this->render('index');
+    }
+	
 
     /**
      * Login action.

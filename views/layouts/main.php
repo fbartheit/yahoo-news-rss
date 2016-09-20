@@ -27,19 +27,23 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'Y-news',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
+        'options' => ['class' => 'navbar-nav'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
+            ['label' => 'Science', 'url' => ['/site/science']],
+            ['label' => 'Tech', 'url' => ['/site/tech']],
+			['label' => 'World', 'url' => ['/site/world']],
+			['label' => 'Politics', 'url' => ['/site/politics']],
+			['label' => 'Health', 'url' => ['/site/health']],
+			['label' => 'Contact', 'url' => ['/site/contact']],
+            /*Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
                 '<li>'
@@ -50,27 +54,51 @@ AppAsset::register($this);
                 )
                 . Html::endForm()
                 . '</li>'
-            )
+            )*/
         ],
-    ]);
-    NavBar::end();
+    ]); ?>
+	<form class="navbar-form navbar-left">
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon-search">
+			<span class="input-group-addon" id="basic-addon-search"><span class="glyphicon glyphicon-search"></span></span>
+		</div>
+    </form>
+    <?php
+		NavBar::end();
     ?>
 
     <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
         <?= $content ?>
     </div>
 </div>
-
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
+<div class="container">
+	<footer class="footer">
+		<p class="footer-text">Copyright &copy; <?= date('Y') ?> by <strong>Y-news</strong> All rights reserved</p>
+		
+		<?php 
+			echo Nav::widget([
+				'options' => ['class' => 'navbar-nav navbar-right'],
+				'items' => [
+					['label' => 'Home', 'url' => ['/site/index']],
+					['label' => 'About Us', 'url' => ['/site/about']],
+					['label' => 'Contact', 'url' => ['/site/contact']],
+					
+					/*Yii::$app->user->isGuest ? (
+						['label' => 'Login', 'url' => ['/site/login']]
+					) : (
+						'<li>'
+						. Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
+						. Html::submitButton(
+							'Logout (' . Yii::$app->user->identity->username . ')',
+							['class' => 'btn btn-link']
+						)
+						. Html::endForm()
+						. '</li>'
+					)*/
+				],
+			]); ?>
+	</footer>
+</div>
 
 <?php $this->endBody() ?>
 </body>
