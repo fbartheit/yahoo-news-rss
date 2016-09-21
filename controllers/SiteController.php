@@ -6,8 +6,12 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
+use yii\data\Pagination;
 use app\models\LoginForm;
 use app\models\ContactForm;
+
+use app\models\Feed;
+use app\models\FeedType;
 
 class SiteController extends Controller
 {
@@ -60,7 +64,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+		$pageTitle = "Home";
+		return $this->renderCategory("home", $pageTitle);
     }
 	
 	/**
@@ -70,7 +75,8 @@ class SiteController extends Controller
      */
     public function actionScience()
     {
-        return $this->render('index');
+		$pageTitle = "Science";
+        return $this->renderCategory("science", $pageTitle);
     }
 	
 	/**
@@ -80,7 +86,8 @@ class SiteController extends Controller
      */
     public function actionTech()
     {
-        return $this->render('index');
+        $pageTitle = "Tech";
+        return $this->renderCategory("tech", $pageTitle);
     }
 	
 	/**
@@ -90,7 +97,8 @@ class SiteController extends Controller
      */
     public function actionWorld()
     {
-        return $this->render('index');
+        $pageTitle = "World";
+        return $this->renderCategory("world", $pageTitle);
     }
 	
 	/**
@@ -100,7 +108,8 @@ class SiteController extends Controller
      */
     public function actionPolitics()
     {
-        return $this->render('index');
+        $pageTitle = "Politics";
+        return $this->renderCategory("politics", $pageTitle);
     }
 	
 	/**
@@ -110,8 +119,34 @@ class SiteController extends Controller
      */
     public function actionHealth()
     {
-        return $this->render('index');
+        $pageTitle = "Health";
+        return $this->renderCategory("health", $pageTitle);
     }
+	
+	/** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+	 * Gets results for specific category.
+	 *
+	 * @return string
+	 */
+	private function renderCategory($categoryName, $pageTitle){
+		$query = FeedType::find();
+		
+		$pagination = new Pagination([
+			'defaultPageSize' => 2,
+			'totalCount' => $query->count(),
+		]);
+		
+		$feeds = $query->orderBy('title')
+			->offset($pagination->offset)
+			->limit($pagination->limit)
+			->all();
+			
+		return $this->render('index', [
+			'feeds' => $feeds,
+			'pagination' => $pagination,
+			"pageTitle" => $pageTitle,
+		]);
+	}
 	
 
     /**
