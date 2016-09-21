@@ -33,6 +33,12 @@ h4{
 	padding: 15px 15px 20px;
 }
 
+.navbar > .container .navbar-brand{
+	font-size: 45px;
+	color: white;
+	margin-top: 5px;
+}
+
 .navbar-inverse{
 	position: relative;
 	padding: 4px 4px 16px 4px;
@@ -47,8 +53,7 @@ h4{
 	background-color: #d5c68a;
 	border-radius: 10px;
 	margin-top: 12px;
-	padding-left: 5px;
-	padding-right: 5px;
+	padding: 2px 5px;
 }
 
 .navbar-nav > li > a{
@@ -88,13 +93,13 @@ h4{
 }
 
 .navbar-form{
-	margin-top: 12px;
+	margin-top: 14px;
 }
 
 .footer{
 	color: #7b2e00;
 	padding: 0px 15px;
-	height: 40px;
+	height: 44px;
 	border-top: 0px;
 	background-color: #d5c68a;
 	border-radius: 10px;
@@ -118,6 +123,6 @@ h4{
 }
 
 .footer-text{
-	padding-top: 10px;
+	padding-top: 12px;
 	float: left;
 }
