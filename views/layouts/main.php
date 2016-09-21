@@ -36,12 +36,12 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Science', 'url' => ['/site/science']],
-            ['label' => 'Tech', 'url' => ['/site/tech']],
-			['label' => 'World', 'url' => ['/site/world']],
-			['label' => 'Politics', 'url' => ['/site/politics']],
-			['label' => 'Health', 'url' => ['/site/health']],
+            ['label' => 'Home', 'url' => ['/feed/index']],
+            ['label' => 'Science', 'url' => ['/feed/science']],
+            ['label' => 'Tech', 'url' => ['/feed/tech']],
+			['label' => 'World', 'url' => ['/feed/world']],
+			['label' => 'Politics', 'url' => ['/feed/politics']],
+			['label' => 'Health', 'url' => ['/feed/health']],
 			['label' => 'Contact', 'url' => ['/site/contact']],
             /*Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
@@ -79,7 +79,7 @@ AppAsset::register($this);
 			echo Nav::widget([
 				'options' => ['class' => 'navbar-nav navbar-right'],
 				'items' => [
-					['label' => 'Home', 'url' => ['/site/index']],
+					['label' => 'Home', 'url' => ['/feed/index']],
 					['label' => 'About Us', 'url' => ['/site/about']],
 					['label' => 'Contact', 'url' => ['/site/contact']],
 					

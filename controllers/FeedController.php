@@ -3,11 +3,14 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Feed;
 use app\models\FeedSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\Pagination;
+
+use app\models\Feed;
+use app\models\FeedType;
 
 /**
  * FeedController implements the CRUD actions for Feed model.
@@ -35,14 +38,96 @@ class FeedController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new FeedSearch();
+        /*$searchModel = new FeedSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);
+        ]);*/
+		$pageTitle = "Home";
+		return $this->renderCategory("home", $pageTitle);
     }
+	
+	/**
+     * Displays science page.
+     *
+     * @return string
+     */
+    public function actionScience()
+    {
+		$pageTitle = "Science";
+        return $this->renderCategory("science", $pageTitle);
+    }
+	
+	/**
+     * Displays tech page.
+     *
+     * @return string
+     */
+    public function actionTech()
+    {
+        $pageTitle = "Tech";
+        return $this->renderCategory("tech", $pageTitle);
+    }
+	
+	/**
+     * Displays world page.
+     *
+     * @return string
+     */
+    public function actionWorld()
+    {
+        $pageTitle = "World";
+        return $this->renderCategory("world", $pageTitle);
+    }
+	
+	/**
+     * Displays politics page.
+     *
+     * @return string
+     */
+    public function actionPolitics()
+    {
+        $pageTitle = "Politics";
+        return $this->renderCategory("politics", $pageTitle);
+    }
+	
+	/**
+     * Displays health page.
+     *
+     * @return string
+     */
+    public function actionHealth()
+    {
+        $pageTitle = "Health";
+        return $this->renderCategory("health", $pageTitle);
+    }
+	
+	/** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+	 * Gets results for specific category.
+	 *
+	 * @return string
+	 */
+	private function renderCategory($categoryName, $pageTitle){
+		$query = $this->dummy_feeds();//FeedType::find();
+		
+		$pagination = new Pagination([
+			'defaultPageSize' => 6,
+			'totalCount' => 20, //$query->count(),
+		]);
+		
+		$feeds = $query; //->orderBy('title')
+			//->offset($pagination->offset)
+			//->limit($pagination->limit)
+			//->all();
+			
+		return $this->render('index', [
+			'feeds' => $feeds,
+			'pagination' => $pagination,
+			"pageTitle" => $pageTitle,
+		]);
+	}
 
     /**
      * Displays a single Feed model.
@@ -121,4 +206,25 @@ class FeedController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+	
+	private function dummy_feeds(){
+		$feeds = array();
+		
+		for($i=0; $i<20; $i++){
+			$feed1 = new Feed();
+			$feed1->id = "$i";
+			$feed1->title = "Feed $i";
+			$feed1->description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nisl lacus, condimentum ut nibh sit amet, tempor pretium massa. Fusce congue porttitor dolor ultrices dictum. Proin neque dolor, malesuada ac eleifend viverra, vehicula et metus. Fusce ultrices sollicitudin mollis. Cras vulputate, dui quis blandit pretium, enim urna venenatis velit, ut dictum mauris elit ac nisl. Phasellus accumsan lorem orci, vitae vestibulum mi  tincidunt vel. Praesent interdum lacus nec nunc ullamcorper, luctus egestas elit pulvinar.";
+			$feed1->date_posted = "Wed, 10 Feb 2016 00:13:20";
+			$feed1->rating = 4 + $i%2;
+			$feed1->num_views = "128";
+			$feed1->num_rates = "45";
+			$feed1["link"] = "http://www.google.com";
+			$feed1->image_link = "";
+			$feed1->type_id = 1 + $i%4;
+			$feeds[$i] = $feed1;
+		}
+		return $feeds;
+	}
+	
 }
