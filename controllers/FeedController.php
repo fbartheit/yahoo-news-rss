@@ -46,7 +46,7 @@ class FeedController extends Controller
             'dataProvider' => $dataProvider,
         ]);*/
 		$pageTitle = "Home";
-		return $this->renderCategory("home", $pageTitle);
+		return $this->renderCategory($pageTitle);
     }
 	
 	/**
@@ -57,7 +57,7 @@ class FeedController extends Controller
     public function actionScience()
     {
 		$pageTitle = "Science";
-        return $this->renderCategory("science", $pageTitle);
+        return $this->renderCategory($pageTitle);
     }
 	
 	/**
@@ -68,7 +68,7 @@ class FeedController extends Controller
     public function actionTech()
     {
         $pageTitle = "Tech";
-        return $this->renderCategory("tech", $pageTitle);
+        return $this->renderCategory($pageTitle);
     }
 	
 	/**
@@ -79,7 +79,7 @@ class FeedController extends Controller
     public function actionWorld()
     {
         $pageTitle = "World";
-        return $this->renderCategory("world", $pageTitle);
+        return $this->renderCategory($pageTitle);
     }
 	
 	/**
@@ -90,7 +90,7 @@ class FeedController extends Controller
     public function actionPolitics()
     {
         $pageTitle = "Politics";
-        return $this->renderCategory("politics", $pageTitle);
+        return $this->renderCategory($pageTitle);
     }
 	
 	/**
@@ -101,7 +101,7 @@ class FeedController extends Controller
     public function actionHealth()
     {
         $pageTitle = "Health";
-        return $this->renderCategory("health", $pageTitle);
+        return $this->renderCategory($pageTitle);
     }
 	
 	/** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
@@ -109,18 +109,31 @@ class FeedController extends Controller
 	 *
 	 * @return string
 	 */
-	private function renderCategory($categoryName, $pageTitle){
-		$query = $this->dummy_feeds();//FeedType::find();
+	private function renderCategory($pageTitle){
+		// TODO check cache, if empty load data, else read from cache
+		//
+		// 
+		$query = Feed::find();
 		
 		$pagination = new Pagination([
 			'defaultPageSize' => 6,
-			'totalCount' => 20, //$query->count(),
+			'totalCount' => $query->count(),
 		]);
 		
-		$feeds = $query; //->orderBy('title')
-			//->offset($pagination->offset)
-			//->limit($pagination->limit)
-			//->all();
+		if($pageTitle != "Home"){
+			$feeds = $query->from('feed')
+				->join('LEFT JOIN', 'feed_type', 'feed.type_id=feed_type.id')
+				->where('feed_type.title=:type_title', array(':type_title'=>$pageTitle))
+				->orderBy('feed.title')
+				->offset($pagination->offset)
+				->limit($pagination->limit)
+				->all();
+		}else{
+			$feeds = $query->orderBy('title')
+				->offset($pagination->offset)
+				->limit($pagination->limit)
+				->all();
+		}
 			
 		return $this->render('index', [
 			'feeds' => $feeds,
