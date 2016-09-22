@@ -127,13 +127,19 @@ h4{
 	border-bottom-left-radius: 10px;
 }
 
+
 .pagination > li:last-child > span,
 .pagination > li:last-child > a {
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px;
 }
 
-.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus{
 	color: #ffffff;
 	background-color: #000000;
 	border-color: #d5c68a;

@@ -17,9 +17,7 @@ $this->title = 'Y-news - Home';
 			<div class="row">
 		<?php } ?>
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<div class="panel" style="width: 95%; float: <?= ($i % 2 === 0)?'left':'right' ?>;";>
-						<?= Html::encode("{$feed->title} ({$feed->link})") ?>
-					</div>
+					<?= Html::encode("{$feed->title} ({$feed->link})") ?>
 				</div>
 		<?php if($i % 2 !== 0){ ?>
 			</div>
