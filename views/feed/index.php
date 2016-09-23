@@ -4,6 +4,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
+use app\widgets\FeedWidget;
 
 $this->title = 'Y-news - Home';
 ?>
@@ -17,7 +18,9 @@ $this->title = 'Y-news - Home';
 			<div class="row">
 		<?php } ?>
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<?= Html::encode("{$feed->title} ({$feed->link})") ?>
+					
+						<?= FeedWidget::widget(['feed'=>$feed]) ?>
+				
 				</div>
 		<?php if($i % 2 !== 0){ ?>
 			</div>
