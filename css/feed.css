@@ -1,0 +1,70 @@
+.feed_panel{
+	border: 1px solid #d5c68a;
+	padding-right: 0px;
+    padding-left: 0px;
+}
+
+.feed_panel  .col-md-5, .feed_panel  .col-md-7{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.feed_panel > .header{
+	background-color: #d5c68a;
+	padding: 10px 20px;
+}
+
+.feed_panel > .content{
+	padding: 10px 20px;
+	background-color: white;
+	margin: 0px;
+}
+
+.feed_panel > .content > .row{
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.feed_panel .article{
+	min-height: 130px;
+}
+
+.feed_panel  .feed_description{
+	text-align: justify;
+	margin-left: 10px;
+	line-height: 2.5ex;
+	height: 10ex;
+	overflow: hidden;
+	
+    /*text-overflow:ellipsis;
+	 tri tacke*/
+	 
+}
+
+.feed_panel .data_bar {
+	margin: 10px 0px 0px 10px;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+
+.feed_panel .views{
+	display: inline;
+	float: right;
+}
+
+.feed_panel .rating{
+	display: inline;
+}
+
+.feed_panel .glyphicon-star{
+	color: yellow;
+}
+
+.feed_panel .empty{
+	color: lightgray;
+}
+
+.feed_panel .glyphicon-eye-open{
+	color: #d5c68a;
+}
