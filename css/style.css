@@ -15,7 +15,27 @@ body{
 .col-lg-6,
 .col-md-6,
 .col-sm-12,
-.col-xs-12{
+.col-xs-12  {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.feed_row{
+	
+}
+
+.feed_row .col-lg-6:first-child,
+.feed_row .col-md-6:first-child {
+	padding-right: 10px;
+}
+
+.feed_row .col-lg-6:last-child,
+.feed_row .col-md-6:last-child {
+	padding-left: 10px;
+}
+
+.feed_row .col-sm-12,
+.feed_row .col-xs-12 {
 	padding-left: 0px;
 	padding-right: 0px;
 }
