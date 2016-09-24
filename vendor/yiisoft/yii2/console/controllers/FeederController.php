@@ -18,6 +18,7 @@ class FeederController extends Controller {
     
     public function retrieveFeeds($feedCategories){
         $feeds = [];
+        $datetime = $this->getLastFeedDate();
         foreach($feedCategories as $cat){
             $content = file_get_contents($cat->link);
             $item = simplexml_load_string($content);
@@ -27,9 +28,12 @@ class FeederController extends Controller {
                 $feed->title = $entry->title;
                 $feed->description = $entry->description;
                 $feed->link = $entry->link;
-                $feed->date_posted = $entry->pubDate;
+                $feed->date_posted = date('Y-m-d H:i:s', strtotime($entry->pubDate));
                 $feed->typeId = $cat->id;
-                array_push($feeds, $feed);
+                
+                if($feed->date_posted > $datetime){
+                    array_push($feeds, $feed);
+                }
             }
         }
         return $feeds;
@@ -43,12 +47,10 @@ class FeederController extends Controller {
             $row = [$feed->title, $feed->description, $feed->date_posted, $feed->link, $feed->typeId];
             array_push($values, $row);
         }
-        
-        
+
         $conn->createCommand()->batchInsert('feed',
             ['title', 'description', 'date_posted', 'link', 'type_id'],
              $values)->execute();
-             
     }
     
     public function getFeedCategories(){
@@ -63,6 +65,16 @@ class FeederController extends Controller {
             array_push($feedCategories, $cat);
         }
         return $feedCategories;
+    }
+    
+    public function getLastFeedDate(){
+        $datetime = 0;
+        $conn = $this->createConnection();
+        $result = $conn->createCommand('SELECT date_posted FROM feed ORDER BY date_posted DESC LIMIT 1')->queryAll();
+        foreach($result as $res){
+            $datetime = $res['date_posted'];
+        }
+        return $datetime;
     }
 
     public function createConnection(){
