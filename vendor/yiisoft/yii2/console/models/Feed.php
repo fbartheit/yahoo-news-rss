@@ -9,6 +9,7 @@ namespace yii\console\models;
  * @property string $description
  * @property string $date_posted
  * @property string $link
+ * @property string $image_link
  * @property integer $typeId
  */
 class Feed
