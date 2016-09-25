@@ -15,7 +15,7 @@ $this->title = 'Y-news - Home';
 	<?php $i=0;
 	foreach($feeds as $feed){
 		if($i % 2 === 0){ ?>
-			<div class="row">
+			<div class="row feed_row">
 		<?php } ?>
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					
