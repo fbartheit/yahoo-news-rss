@@ -81,7 +81,7 @@
 }
 
 .feed_panel h4{
-	height: 36px;
+	min-height: 36px;
     font-weight: bold;
 }
 
@@ -104,6 +104,16 @@
 	}
 	
 	.feed_panel h4{
-		height: 54px;
+		min-height: 54px;
+	}
+	
+	.feed_panel > .header{
+		font-size: 10px;
+	}
+}
+
+@media(max-width : 768px){
+	.feed_panel > .header{
+		font-size: 8px;
 	}
 }
