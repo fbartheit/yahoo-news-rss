@@ -202,6 +202,65 @@ h4{
 	float: left;
 }
 
+#contact-form {
+	width: 100%;
+}
+
+#contact-form .form-control{
+	display: inline;
+}
+
+#contact-form input{
+	width: 86%;
+}
+
+#contact-form label{
+	vertical-align: top;
+	width: 13%;
+}
+
+#contact-form button{
+	float: right;
+	
+}
+
+#contact-form .btn-primary{
+	background-color: #7b2e00;
+	border-color: #7b2e00;
+
+}
+
+#contact-form .btn-primary:hover{
+	background-color: #6e2900;
+	border-color: #6e2900;
+	
+}
+
+#contact-form .help-block{
+	margin-left: 13%;
+}
+
+#contactform-body label{
+	width: 13%;
+}
+#contactform-body{
+	width: 86%;
+}
+
+#contact-form .required .control-label:after {
+  content:"*";
+  color:red;
+}
+.panel h4{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#contact-form input {
+   padding-right: 25px;
+   background-image: url(...);
+   background-position: right top;
+}
 @media (max-width: 768px){
 	.feed_row .col-lg-6:first-child,
 	.feed_row .col-md-6:first-child{
@@ -213,5 +272,23 @@ h4{
 	.feed_row .col-md-6:last-child{
 		padding-left: 0px;
 		padding-right: 0px;
+	}
+}
+
+@media (max-width: 704px){
+	#contact-form label{
+		width: 100%;
+		
+	}
+	#contact-form input{
+		width: 100%;
+	}
+	
+	#contactform-body{
+	width: 100%;
+	}
+	
+	#contact-form .help-block{
+	margin-left: 0px;
 	}
 }
