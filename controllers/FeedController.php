@@ -110,10 +110,26 @@ class FeedController extends Controller
 	 * @return string
 	 */
 	private function renderCategory($pageTitle){
-		// TODO check cache, if empty load data, else read from cache
-		//
-		// 
-		$query = Feed::find();
+		$page = Yii::$app->request->get('page', 1);
+		$key = 'category_{$pageTitle}_page_{$page}';
+		$data = Yii::$app->cache->get($key);
+		if ($data === false) {
+
+			// $data is not found in cache, calculate it from scratch
+			if($pageTitle != "Home"){
+				$query = Feed::find()
+					->join('LEFT JOIN', 'feed_type', 'feed.type_id=feed_type.id')
+					->where('feed_type.title=:type_title', array(':type_title'=>$pageTitle))
+					->orderBy('feed.date_posted');
+			}else{
+				$query = Feed::find()->orderBy('title')
+					->orderBy('feed.date_posted');
+			}
+			// store $data in cache so that it can be retrieved next time
+			Yii::$app->cache->set($key, $data);
+		}
+
+		// $data is available here
 		
 		$pagination = new Pagination([
 			'defaultPageSize' => 6,
@@ -121,21 +137,15 @@ class FeedController extends Controller
 		]);
 		
 		if($pageTitle != "Home"){
-			$feeds = $query->from('feed')
-				->join('LEFT JOIN', 'feed_type', 'feed.type_id=feed_type.id')
-				->where('feed_type.title=:type_title', array(':type_title'=>$pageTitle))
-				->orderBy('feed.date_posted')
-				->offset($pagination->offset)
+			$feeds = $query->offset($pagination->offset)
 				->limit($pagination->limit)
 				->all();
 		}else{
-			$feeds = $query->orderBy('title')
-				->orderBy('feed.date_posted')
-				->offset($pagination->offset)
+			$feeds = $query->offset($pagination->offset)
 				->limit($pagination->limit)
 				->all();
 		}
-		
+			
 		return $this->render('index', [
 			'feeds' => $feeds,
 			'pagination' => $pagination,

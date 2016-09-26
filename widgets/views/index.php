@@ -6,6 +6,7 @@ use app\models\Feed;
 <div class="container-fluid feed_panel">
 	<div class="header">
 		<?= date('D, d M Y H:i:s', strtotime($feed->date_posted)) ?>
+		<div class="fb-like" data-href="<?= $feed['link'] ?>" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
 	</div>
 	<div class="content">
 		<div class="row">
