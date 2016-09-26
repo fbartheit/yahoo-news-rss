@@ -41,17 +41,20 @@ $this->params['breadcrumbs'][] = $this->title;
 			out the following form to contact us. Thank you.</h4>
 
         <div class="row">
-            <div class="col-lg-5">
+            <div class="col-lg-10">
 
                 <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
-
+					<div class="required">
                     <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
 
+					<?= $form->field($model, 'surname') ?>
+					
                     <?= $form->field($model, 'email') ?>
 
                     <?= $form->field($model, 'subject') ?>
 
                     <?= $form->field($model, 'body')->textArea(['rows' => 6]) ?>
+					</div>
 <?php /*
                     <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
                         'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
