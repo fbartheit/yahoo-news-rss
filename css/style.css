@@ -4,8 +4,9 @@
 }
 
 body{
-	color: black;
-	background-color: #e9e8d8;
+	
+	background-image: url("../images/background.jpg"); 
+	background-size: 100%;
 }
 
 .container{
@@ -69,7 +70,7 @@ h4{
 
 .navbar-inverse{
 	position: relative;
-	padding: 4px 4px 16px 4px;
+	padding: 4px 4px 4px 4px;
 	background: black;
 }
 
@@ -101,18 +102,22 @@ h4{
 	background-color: black;
 }
 
-.navbar-inverse:after {
-	background: linear-gradient(-45deg, #e9e8d8 8px, transparent 0), linear-gradient(45deg, #e9e8d8 8px, transparent 0);
-	background-position: left-bottom;
-	background-repeat: repeat-x;
-	background-size: 16px 16px;
-	content: " ";
-	display: block;
-	position: absolute;
-	bottom: 0px;
-	left: 0px;
-	width: 100%;
-	height: 13px;
+
+
+.zigzag {
+
+	background: linear-gradient(135deg, #000000 8px, transparent 0), linear-gradient(-135deg, #000000 8px, transparent 0);
+    background-position: left-bottom;
+    background-repeat: repeat-x;
+    background-size: 16px 16px;
+    content: " ";
+    display: block;
+    position: absolute;
+	top:64px;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 13px;
 }
 
 .input-group-addon{
@@ -256,11 +261,6 @@ h4{
 	font-weight: bold;
 }
 
-#contact-form input {
-   padding-right: 25px;
-   background-image: url(...);
-   background-position: right top;
-}
 @media (max-width: 768px){
 	.feed_row .col-lg-6:first-child,
 	.feed_row .col-md-6:first-child{
@@ -291,4 +291,58 @@ h4{
 	#contact-form .help-block{
 	margin-left: 0px;
 	}
+}
+
+@media (min-width: 932px) and (max-width: 1264px){
+	.zigzag {
+
+	background: linear-gradient(135deg, #000000 8px, transparent 0), linear-gradient(-135deg, #000000 8px, transparent 0);
+    background-position: left-bottom;
+    background-repeat: repeat-x;
+    background-size: 16px 16px;
+    content: " ";
+    display: block;
+    position: absolute;
+	top:113px;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 13px;
+}
+}
+
+@media (min-width: 768px) and (max-width: 932px){
+	.zigzag {
+
+	background: linear-gradient(135deg, #000000 8px, transparent 0), linear-gradient(-135deg, #000000 8px, transparent 0);
+    background-position: left-bottom;
+    background-repeat: repeat-x;
+    background-size: 16px 16px;
+    content: " ";
+    display: block;
+    position: absolute;
+	top:170px;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 13px;
+}
+}
+
+@media (max-width: 768px){
+	.zigzag {
+
+	background: linear-gradient(135deg, #000000 8px, transparent 0), linear-gradient(-135deg, #000000 8px, transparent 0);
+    background-position: left-bottom;
+    background-repeat: repeat-x;
+    background-size: 16px 16px;
+    content: " ";
+    display: block;
+    position: absolute;
+	top:59px;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 13px;
+}
 }
