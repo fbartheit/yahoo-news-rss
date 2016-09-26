@@ -24,14 +24,28 @@ class FeederController extends Controller {
             $item = simplexml_load_string($content);
             foreach($item->channel->item as $entry){
                 // title, description, link, pubDate, source, guid
-                $feed = new Feed();
-                $feed->title = $entry->title;
-                $feed->description = $entry->description;
-                $feed->link = $entry->link;
-                $feed->date_posted = date('Y-m-d H:i:s', strtotime($entry->pubDate));
-                $feed->typeId = $cat->id;
-                
-                if($feed->date_posted > $datetime){
+                $entryDate = date('Y-m-d H:i:s', strtotime($entry->pubDate));
+                if($entryDate > $datetime){
+                    $feed = new Feed();
+                    $feed->title = $entry->title;
+                    $feed->description = $entry->description;
+                    $feed->image_link = '';
+                    
+                    $matches = [];
+                    preg_match('/src="(.*?)"/', $feed->description, $matches);
+                    try{
+                        $feed->image_link = $matches[1];
+                        $pos = strpos($feed->description, "</a>");
+                        $temp = substr($feed->description, $pos);
+                        $feed->description = strip_tags($temp);
+                    } catch(\yii\base\ErrorException $e){
+                        //echo "nema slike";
+                    }
+                    
+                    $feed->link = $entry->link;
+                    $feed->date_posted = $entryDate;
+                    $feed->typeId = $cat->id;
+                    
                     array_push($feeds, $feed);
                 }
             }
@@ -44,12 +58,12 @@ class FeederController extends Controller {
         
         $values = [];
         foreach($feeds as $feed){
-            $row = [$feed->title, $feed->description, $feed->date_posted, $feed->link, $feed->typeId];
+            $row = [$feed->title, $feed->description, $feed->date_posted, $feed->link, $feed->image_link, $feed->typeId];
             array_push($values, $row);
         }
 
         $conn->createCommand()->batchInsert('feed',
-            ['title', 'description', 'date_posted', 'link', 'type_id'],
+            ['title', 'description', 'date_posted', 'link', 'image_link', 'type_id'],
              $values)->execute();
     }
     
