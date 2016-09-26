@@ -110,8 +110,8 @@ class FeedController extends Controller
 	 * @return string
 	 */
 	private function renderCategory($pageTitle){
-		$page = Yii::$app->request->get('page');
-		$key = 'category_$pageTitle_page_$page';
+		$page = Yii::$app->request->get('page', 1);
+		$key = 'category_{$pageTitle}_page_{$page}';
 		$data = Yii::$app->cache->get($key);
 		if ($data === false) {
 
