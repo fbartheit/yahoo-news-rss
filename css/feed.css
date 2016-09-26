@@ -102,4 +102,8 @@
 	.feed_panel .data_bar{
 		margin-left: 0px;
 	}
+	
+	.feed_panel h4{
+		height: 54px;
+	}
 }
