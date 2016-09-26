@@ -14,7 +14,7 @@ body{
 
 .col-lg-6,
 .col-md-6,
-.col-sm-12,
+.col-sm-6,
 .col-xs-12  {
 	padding-left: 0px;
 	padding-right: 0px;
@@ -34,7 +34,7 @@ body{
 	padding-left: 10px;
 }
 
-.feed_row .col-sm-12,
+.feed_row .col-sm-6,
 .feed_row .col-xs-12 {
 	padding-left: 0px;
 	padding-right: 0px;
@@ -198,4 +198,18 @@ h4{
 .footer-text{
 	padding-top: 12px;
 	float: left;
+}
+
+@media (max-width: 768px){
+	.feed_row .col-lg-6:first-child,
+	.feed_row .col-md-6:first-child{
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	
+	.feed_row .col-lg-6:last-child,
+	.feed_row .col-md-6:last-child{
+		padding-left: 0px;
+		padding-right: 0px;
+	}
 }

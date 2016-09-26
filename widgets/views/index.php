@@ -5,7 +5,7 @@ use app\models\Feed;
 
 <div class="container-fluid feed_panel">
 	<div class="header">
-		<?= $feed->date_posted ?>
+		<?= date('D, d M Y H:i:s', strtotime($feed->date_posted)) ?>
 	</div>
 	<div class="content">
 		<div class="row">
@@ -13,10 +13,14 @@ use app\models\Feed;
 		</div>
 		
 		<div class="row">
+		<?php if(!empty($feed->image_link)){ ?>
 			<div class="col-md-5">
-				<img class="img img-responsive" src="images/image_feed.png" />
+				<img class="img img-responsive feed_image" src="<?= $feed->image_link ?>" />
 			</div>
 			<div class="col-md-7">
+		<?php }else{ ?>
+			<div class="col-md-12">
+		<?php } ?>
 				<div class="article">
 					<p class="feed_description">
 						<?= $feed->description ?>

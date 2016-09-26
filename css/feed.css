@@ -5,9 +5,15 @@
 	margin-bottom: 20px;
 }
 
-.feed_panel  .col-md-5, .feed_panel  .col-md-7{
+.feed_panel  .col-md-5,
+.feed_panel  .col-md-7,
+.feed_panel .col-md-12 {
 	padding-left: 0px;
 	padding-right: 0px;
+}
+
+.feed_panel .col-md-12 .article .feed_description{
+	margin-left: 0px;
 }
 
 .feed_panel > .header{
@@ -27,7 +33,11 @@
 }
 
 .feed_panel .article{
-	min-height: 130px;
+	min-height: 160px;
+}
+
+.feed_panel .feed_image{
+	width: 100%;
 }
 
 .feed_panel  .feed_description{
@@ -68,4 +78,23 @@
 
 .feed_panel .glyphicon-eye-open{
 	color: #d5c68a;
+}
+
+.feed_panel h4{
+    font-weight: bold;
+}
+
+@media (max-width: 992px){
+	.feed_panel  .feed_description{
+		margin-top: 20px;
+		margin-left: 0px;
+	}
+	
+	.feed_panel .article{
+		min-height: 130px;
+	}
+	
+	.feed_panel .data_bar{
+		margin-left: 0px;
+	}
 }

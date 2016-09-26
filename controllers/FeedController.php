@@ -124,17 +124,18 @@ class FeedController extends Controller
 			$feeds = $query->from('feed')
 				->join('LEFT JOIN', 'feed_type', 'feed.type_id=feed_type.id')
 				->where('feed_type.title=:type_title', array(':type_title'=>$pageTitle))
-				->orderBy('feed.title')
+				->orderBy('feed.date_posted')
 				->offset($pagination->offset)
 				->limit($pagination->limit)
 				->all();
 		}else{
 			$feeds = $query->orderBy('title')
+				->orderBy('feed.date_posted')
 				->offset($pagination->offset)
 				->limit($pagination->limit)
 				->all();
 		}
-			
+		
 		return $this->render('index', [
 			'feeds' => $feeds,
 			'pagination' => $pagination,
