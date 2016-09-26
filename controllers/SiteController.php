@@ -64,90 +64,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-		$pageTitle = "Home";
-		return $this->renderCategory("home", $pageTitle);
+		//$pageTitle = "Home";
+		return $this->render('index');
     }
-	
-	/**
-     * Displays science page.
-     *
-     * @return string
-     */
-    public function actionScience()
-    {
-		$pageTitle = "Science";
-        return $this->renderCategory("science", $pageTitle);
-    }
-	
-	/**
-     * Displays tech page.
-     *
-     * @return string
-     */
-    public function actionTech()
-    {
-        $pageTitle = "Tech";
-        return $this->renderCategory("tech", $pageTitle);
-    }
-	
-	/**
-     * Displays world page.
-     *
-     * @return string
-     */
-    public function actionWorld()
-    {
-        $pageTitle = "World";
-        return $this->renderCategory("world", $pageTitle);
-    }
-	
-	/**
-     * Displays politics page.
-     *
-     * @return string
-     */
-    public function actionPolitics()
-    {
-        $pageTitle = "Politics";
-        return $this->renderCategory("politics", $pageTitle);
-    }
-	
-	/**
-     * Displays health page.
-     *
-     * @return string
-     */
-    public function actionHealth()
-    {
-        $pageTitle = "Health";
-        return $this->renderCategory("health", $pageTitle);
-    }
-	
-	/** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
-	 * Gets results for specific category.
-	 *
-	 * @return string
-	 */
-	private function renderCategory($categoryName, $pageTitle){
-		$query = FeedType::find();
-		
-		$pagination = new Pagination([
-			'defaultPageSize' => 2,
-			'totalCount' => $query->count(),
-		]);
-		
-		$feeds = $query->orderBy('title')
-			->offset($pagination->offset)
-			->limit($pagination->limit)
-			->all();
-			
-		return $this->render('index', [
-			'feeds' => $feeds,
-			'pagination' => $pagination,
-			"pageTitle" => $pageTitle,
-		]);
-	}
-	
 
     /**
      * Login action.
