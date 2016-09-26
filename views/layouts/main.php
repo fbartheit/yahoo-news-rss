@@ -70,6 +70,7 @@ AppAsset::register($this);
 		NavBar::end();
     ?>
 
+	<div class="zigzag"></div>
     <div class="container">
         <?= $content ?>
     </div>
