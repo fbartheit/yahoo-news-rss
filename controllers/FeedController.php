@@ -241,6 +241,27 @@ class FeedController extends Controller
         }
     }
 	
+	public function actionAjaxsearch(){
+		$keyword = $_POST['keyword'];
+		
+		$feeds = Feed::find()
+			->andFilterWhere(['like', 'description', $keyword])
+			->limit(5)
+			->all();
+				
+		$result = "";
+		foreach($feeds as $f){
+			$result .= '<a href="';
+			$result .= $f->link;
+			$result .= '" target="_blank">';
+			$result .= $f->title;
+			$result .= '</a>';
+			$result .= '<br /><br />';
+		}
+		
+		return $result;
+	}
+	
 	private function dummy_feeds(){
 		$feeds = array();
 		
