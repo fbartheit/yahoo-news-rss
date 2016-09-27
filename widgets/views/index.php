@@ -10,11 +10,7 @@ use app\models\Feed;
 	</div>
 	<div class="content">
 		<div class="row">
-<<<<<<< HEAD
-			<a href="<?= $feed['link'] ?>" target="_blank"><h4><?= $feed->title ?></h4></a>
-=======
 			<a id= "<?= $feed->id ?>_link" href="<?= $feed['link'] ?>" target="_blank"><h4><?= $feed->title ?></h4></a>
->>>>>>> 2faf232fb8cb3f93fc98c733241ee61a216b7c77
 		</div>
 		
 		<div class="row">
@@ -63,6 +59,8 @@ use app\models\Feed;
 	function tooltip(){
 		var span = document.createElement("span");
 		var sel = window.getSelection();
+		var text = sel.toString();
+		
 		if (sel.rangeCount) {
 			var range = sel.getRangeAt(0).cloneRange();
 			range.surroundContents(span);
@@ -70,7 +68,8 @@ use app\models\Feed;
 		span.setAttribute("data-toggle", "popover");
 		span.setAttribute("data-html", "true");
 		
-		var result = search(sel.toString());
+		
+		var result = search(text);
 		span.setAttribute("data-content", result);
 		
 		$(span).popover('show');
