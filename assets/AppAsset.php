@@ -24,7 +24,10 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
 		'js/ascript.js',
+<<<<<<< HEAD
+=======
 		'js/rating.js',
+>>>>>>> 604995519e0f3c60139ea28944d85bb5f90a2bd0
     ];
     public $depends = [
         'yii\web\YiiAsset',

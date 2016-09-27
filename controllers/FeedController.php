@@ -124,10 +124,10 @@ class FeedController extends Controller
 				$data = Feed::find()
 					->join('LEFT JOIN', 'feed_type', 'feed.type_id=feed_type.id')
 					->where('feed_type.title=:type_title', array(':type_title'=>$pageTitle))
-					->orderBy('feed.date_posted ASC');
+					->orderBy('feed.date_posted');
 			}else{
 				$data = Feed::find()->orderBy('title')
-					->orderBy('feed.date_posted ASC');
+					->orderBy('feed.date_posted');
 			}
 			// store $data in cache so that it can be retrieved next time
 		}
@@ -244,7 +244,21 @@ class FeedController extends Controller
             ]);
         }
     }
+	
+	public function actionUpdateViews($id){
+		$model = $this->findModel($id);
+		$model->num_views +=1;
+		
+		if ($model->save()) {
+			return '{\"result\":\"OK\"}';
+		}else{
+			return '{\"result\":\"NOK\"}';
+		}
+		
 
+	}
+
+	
     /**
      * Deletes an existing Feed model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
@@ -273,6 +287,27 @@ class FeedController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+	
+	public function actionAjaxsearch(){
+		$keyword = $_POST['keyword'];
+		
+		$feeds = Feed::find()
+			->andFilterWhere(['like', 'description', $keyword])
+			->limit(5)
+			->all();
+				
+		$result = "";
+		foreach($feeds as $f){
+			$result .= '<a href="';
+			$result .= $f->link;
+			$result .= '" target="_blank">';
+			$result .= $f->title;
+			$result .= '</a>';
+			$result .= '<br /><br />';
+		}
+		
+		return $result;
+	}
 	
 	private function dummy_feeds(){
 		$feeds = array();
