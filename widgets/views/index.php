@@ -10,7 +10,7 @@ use app\models\Feed;
 	</div>
 	<div class="content">
 		<div class="row">
-			<a href="<?= $feed['link'] ?>"><h4><?= $feed->title ?></h4></a>
+			<a id= "<?= $feed->id ?>_link" href="<?= $feed['link'] ?>" target="_blank"><h4><?= $feed->title ?></h4></a>
 		</div>
 		
 		<div class="row">
@@ -36,7 +36,7 @@ use app\models\Feed;
 						</div>
 						<div class="views">
 							<span class="glyphicon glyphicon-eye-open"></span>
-							<span class="view_count"><?= $feed->num_views ?></span>
+							<span id="<?= $feed->id ?>_num_views" class="view_count"><?= $feed->num_views ?></span>
 						</div>
 					</div>
 				</div>
