@@ -291,10 +291,15 @@ class FeedController extends Controller
 	public function actionAjaxsearch(){
 		$keyword = $_POST['keyword'];
 		
-		$feeds = Feed::find()
+		/*$feeds = Feed::find()
 			->andFilterWhere(['like', 'description', $keyword])
 			->limit(5)
-			->all();
+			->all();*/
+			
+		$feeds = Feed::findAll(
+			'description LIKE :match',
+			array(':match' => "%$keyword%")
+		);
 				
 		$result = "";
 		foreach($feeds as $f){

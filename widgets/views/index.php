@@ -10,11 +10,7 @@ use app\models\Feed;
 	</div>
 	<div class="content">
 		<div class="row">
-<<<<<<< HEAD
-			<a href="<?= $feed['link'] ?>" target="_blank"><h4><?= $feed->title ?></h4></a>
-=======
 			<a id= "<?= $feed->id ?>_link" href="<?= $feed['link'] ?>" target="_blank"><h4><?= $feed->title ?></h4></a>
->>>>>>> 2faf232fb8cb3f93fc98c733241ee61a216b7c77
 		</div>
 		
 		<div class="row">
