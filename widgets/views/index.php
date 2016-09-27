@@ -28,11 +28,11 @@ use app\models\Feed;
 					</p>
 					<div class="data_bar">
 						<div class="rating">
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star empty"></span>
-							<span class="glyphicon glyphicon-star empty"></span>
+							<?php 
+								for($i=1; $i<6; $i++){ ?>
+									<span id="<?= $feed->id ?>_<?= $i ?>_star" class="glyphicon glyphicon-star <?= ($i > $feed->rating)?'empty':'' ?>"></span>
+								<?php }
+							?>
 						</div>
 						<div class="views">
 							<span class="glyphicon glyphicon-eye-open"></span>
