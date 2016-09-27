@@ -10,7 +10,11 @@ use app\models\Feed;
 	</div>
 	<div class="content">
 		<div class="row">
+<<<<<<< HEAD
 			<a href="<?= $feed['link'] ?>" target="_blank"><h4><?= $feed->title ?></h4></a>
+=======
+			<a id= "<?= $feed->id ?>_link" href="<?= $feed['link'] ?>" target="_blank"><h4><?= $feed->title ?></h4></a>
+>>>>>>> 2faf232fb8cb3f93fc98c733241ee61a216b7c77
 		</div>
 		
 		<div class="row">
@@ -28,15 +32,15 @@ use app\models\Feed;
 					</p>
 					<div class="data_bar">
 						<div class="rating">
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star"></span>
-							<span class="glyphicon glyphicon-star empty"></span>
-							<span class="glyphicon glyphicon-star empty"></span>
+							<?php 
+								for($i=1; $i<6; $i++){ ?>
+									<span id="<?= $feed->id ?>_<?= $i ?>_star" class="glyphicon glyphicon-star <?= ($i > $feed->rating)?'empty':'' ?>"></span>
+								<?php }
+							?>
 						</div>
 						<div class="views">
 							<span class="glyphicon glyphicon-eye-open"></span>
-							<span class="view_count"><?= $feed->num_views ?></span>
+							<span id="<?= $feed->id ?>_num_views" class="view_count"><?= $feed->num_views ?></span>
 						</div>
 					</div>
 				</div>
