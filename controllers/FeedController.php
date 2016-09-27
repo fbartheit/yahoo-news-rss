@@ -162,6 +162,39 @@ class FeedController extends Controller
 			"pageTitle" => $pageTitle,
 		]);
 	}
+	
+	/**
+     * Ajax rating method.
+     * @param integer $id
+	 * @param integer $rating
+     * @return mixed
+     */
+    public function actionRateArticle($id, $rating)
+    {
+		if(isset($_COOKIE['rated_articles'])){
+			// deserialize and add id, then serialise and set cookie
+			$arr = unserialize($_COOKIE['rated_articles']);
+		}else{
+			// create new cookie and set it
+			$arr = array();
+		}
+		if(!in_array(''.$id, $arr)){
+			$model = $this->findModel($id);
+			$prevAccRating = ($model->num_rates * $model->rating);
+			$model->num_rates += 1;
+			$newRating = ($prevAccRating + $rating) / $model->num_rates;
+			$model->rating = intval($newRating);
+			if($model->save()){
+				$arr[] = ''.$id;
+				setcookie('rated_articles', serialize($arr), 2147483647, '/');
+				return '{\"result\":\"OK\", \"message\":\"OK\"}';
+			}else{
+				return '{\"result\":\"NOK\", \"message\":\"NOK\"}';
+			}
+		}else{
+			return '{\"result\":\"NOK\", \"message\":\"Already rated this article.\"}';
+		}
+    }
 
     /**
      * Displays a single Feed model.
@@ -257,15 +290,17 @@ class FeedController extends Controller
 	
 	public function actionAjaxsearch(){
 		$keyword = $_POST['keyword'];
-		
-		file_put_contents("/var/www/html/root/yahoo-news-rss/controllers/test.txt",$keyword, FILE_APPEND);
-		
-		
+
 		$feeds = Feed::find()
 			->andFilterWhere(['like', 'description', $keyword])
 			->limit(5)
 			->all();
-		
+
+		$feeds = Feed::findAll(
+			'description LIKE :match',
+			array(':match' => "%$keyword%")
+		);
+				
 		$result = "";
 		foreach($feeds as $f){
 			$result .= '<a href="';
