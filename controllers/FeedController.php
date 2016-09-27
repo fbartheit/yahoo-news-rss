@@ -258,11 +258,14 @@ class FeedController extends Controller
 	public function actionAjaxsearch(){
 		$keyword = $_POST['keyword'];
 		
+		file_put_contents("/var/www/html/root/yahoo-news-rss/controllers/test.txt",$keyword, FILE_APPEND);
+		
+		
 		$feeds = Feed::find()
 			->andFilterWhere(['like', 'description', $keyword])
 			->limit(5)
 			->all();
-				
+		
 		$result = "";
 		foreach($feeds as $f){
 			$result .= '<a href="';
