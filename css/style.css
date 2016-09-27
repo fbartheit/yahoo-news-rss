@@ -370,3 +370,11 @@ h4{
 		height: 13px;
 	}
 }
+
+.popover-content{
+	z-index: 1000 !important;
+}
+
+.popover-content a{
+	color: #7b2e00;
+}
