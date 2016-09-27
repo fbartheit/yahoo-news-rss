@@ -27,7 +27,7 @@ use app\models\Feed;
 						<?= $feed->description ?>
 					</p>
 					<div class="data_bar">
-						<div class="rating">
+						<div id="<?= $feed->id ?>_rating" class="rating">
 							<?php 
 								for($i=1; $i<6; $i++){ ?>
 									<span id="<?= $feed->id ?>_<?= $i ?>_star" class="glyphicon glyphicon-star <?= ($i > $feed->rating)?'empty':'' ?>"></span>

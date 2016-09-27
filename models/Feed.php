@@ -39,7 +39,7 @@ class Feed extends \yii\db\ActiveRecord
             [['description', 'date_posted', 'rating', 'num_views', 'num_rates', 'link', 'type_id'], 'required'],
             [['rating'], 'number'],
             [['num_views', 'num_rates', 'type_id'], 'integer'],
-            [['title'], 'string', 'max' => 20],
+            [['title'], 'string', 'max' => 600],
             [['description'], 'string', 'max' => 2000],
             [['date_posted'], 'string', 'max' => 50],
             [['link', 'image_link'], 'string', 'max' => 255],

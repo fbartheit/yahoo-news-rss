@@ -66,6 +66,7 @@
 
 .feed_panel .rating{
 	display: inline;
+	cursor: pointer;
 }
 
 .feed_panel .glyphicon-star{
