@@ -295,11 +295,6 @@ class FeedController extends Controller
 			->andFilterWhere(['like', 'description', $keyword])
 			->limit(5)
 			->all();
-
-		$feeds = Feed::findAll(
-			'description LIKE :match',
-			array(':match' => "%$keyword%")
-		);
 				
 		$result = "";
 		foreach($feeds as $f){
