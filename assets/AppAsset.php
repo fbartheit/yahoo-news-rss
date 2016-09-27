@@ -23,6 +23,8 @@ class AppAsset extends AssetBundle
 		'css/feed.css',
     ];
     public $js = [
+		'js/ascript.js',
+		'js/rating.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
