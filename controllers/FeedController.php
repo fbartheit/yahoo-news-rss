@@ -140,20 +140,12 @@ class FeedController extends Controller
 		]);
 		
 		// apply pagination offsets
-		if($pageTitle != "Home"){
 			$feeds = $data->offset($pagination->offset)
 				->limit($pagination->limit)
 				->all();
-		}else{
-			$feeds = $data->offset($pagination->offset)
-				->limit($pagination->limit)
-				->all();
-		}
 		
 		if(!$data_cached){ // cache paged data if it was calculated from scratch
 			Yii::$app->cache->set($key, $data);
-			//echo "data stored to key " . $key."data:";
-			//var_dump($feeds);
 		}
 			
 		return $this->render('index', [
