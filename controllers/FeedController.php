@@ -294,20 +294,13 @@ class FeedController extends Controller
      * @param string $keyword
      * @return mixed
      */
-	public function actionAjaxsearch($keyword){
-		//$keyword = $_POST['keyword'];
-		//var_dump($keyword);
-
+	public function actionAjaxsearch(){
+		$keyword = $_POST['keyword'];
 		
 		$feeds = Feed::find()
 			->andFilterWhere(['like', 'description', $keyword])
 			->limit(5)
 			->all();
-		/*$feeds = Feed::findAll(
-			'description LIKE :match',
-			array(':match' => "%$keyword%")
-		);
-		var_dump($feeds);*/
 				
 		$result = "";
 		foreach($feeds as $f){
