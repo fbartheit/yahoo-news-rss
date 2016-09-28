@@ -8,10 +8,10 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\helpers\Url;
+use yii\widgets\ActiveForm;
 
 AppAsset::register($this);
-
-
 
 ?>
 <?php $this->beginPage() ?>
@@ -71,12 +71,20 @@ AppAsset::register($this);
 			['label' => 'Contact', 'url' => ['/site/contact']],
         ],
     ]); ?>
-	<form class="navbar-form navbar-left">
+	
+	<?php
+	  $form = ActiveForm::begin([
+		'action' => ['feed/search'],
+		'method' => 'get',
+		'options' => ['class' => 'navbar-form navbar-left'],
+	 ])	?>
 		<div class="input-group">
-			<input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon-search">
+			<input type="text" name="keyword" class="form-control" placeholder="Search" aria-describedby="basic-addon-search">
 			<span class="input-group-addon" id="basic-addon-search"><span class="glyphicon glyphicon-search"></span></span>
 		</div>
-    </form>
+    <?php ActiveForm::end() ?>
+	
+	
     <?php
 		NavBar::end();
     ?>
@@ -97,20 +105,7 @@ AppAsset::register($this);
 					['label' => 'Home', 'url' => ['/feed/index']],
 					['label' => 'About Us', 'url' => ['/site/about']],
 					['label' => 'Contact', 'url' => ['/site/contact']],
-					
-					/*Yii::$app->user->isGuest ? (
-						['label' => 'Login', 'url' => ['/site/login']]
-					) : (
-						'<li>'
-						. Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
-						. Html::submitButton(
-							'Logout (' . Yii::$app->user->identity->username . ')',
-							['class' => 'btn btn-link']
-						)
-						. Html::endForm()
-						. '</li>'
-					)*/
-				],
+			  ],
 			]); ?>
 	</footer>
 </div>
