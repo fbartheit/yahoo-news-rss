@@ -20,14 +20,12 @@ function tooltip(){
     
     $(span).popover('show');
 }
-	
-	
+
 $('body').click(function(e){
     $(function () {
         $('[data-toggle="popover"]').popover('hide');
      });
 });
-
 	
 function search(keyword) {
     var result;
