@@ -33,6 +33,7 @@ use app\models\Feed;
 									<span id="<?= $feed->id ?>_<?= $i ?>_star" class="glyphicon glyphicon-star <?= ($i > $feed->rating)?'empty':'' ?>"></span>
 								<?php }
 							?>
+							<span id="<?= $feed->id ?>_rating_message"></span>
 						</div>
 						<div class="views">
 							<span class="glyphicon glyphicon-eye-open"></span>

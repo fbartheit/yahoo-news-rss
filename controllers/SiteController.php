@@ -23,12 +23,15 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['about', 'contact', 'index', 'create', 'delete', 'update', 'login', 'logout'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['about', 'contact'],
                         'allow' => true,
-                        'roles' => ['@'],
+                    ],
+					[
+                        'actions' => ['index', 'create', 'delete', 'update', 'login', 'logout'],
+                        'allow' => false,
                     ],
                 ],
             ],
@@ -64,7 +67,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-		//$pageTitle = "Home";
 		return $this->render('index');
     }
 

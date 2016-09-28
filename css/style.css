@@ -261,6 +261,10 @@ h4{
 	font-weight: bold;
 }
 
+#w2 ul{
+	display: inline;
+}
+
 @media (max-width: 704px){
 	#contact-form label{
 		width: 100%;
@@ -279,7 +283,7 @@ h4{
 	}
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1420px) {
   .navbar-header {
       float: none;
   }
@@ -313,6 +317,10 @@ h4{
   }
   .collapse.in{
       display:block !important;
+  }
+  
+  #w2{
+	  display: none !important;
   }
 }
 

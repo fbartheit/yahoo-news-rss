@@ -67,19 +67,8 @@ AppAsset::register($this);
 			['label' => 'World', 'url' => ['/feed/world']],
 			['label' => 'Politics', 'url' => ['/feed/politics']],
 			['label' => 'Health', 'url' => ['/feed/health']],
+			['label' => 'About Us', 'url' => ['/site/about']],
 			['label' => 'Contact', 'url' => ['/site/contact']],
-            /*Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link']
-                )
-                . Html::endForm()
-                . '</li>'
-            )*/
         ],
     ]); ?>
 	<form class="navbar-form navbar-left">
