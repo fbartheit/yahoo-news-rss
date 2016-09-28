@@ -283,7 +283,7 @@ h4{
 	}
 }
 
-@media (max-width: 1420px) {
+@media (max-width: 1360px) {
   .navbar-header {
       float: none;
   }
