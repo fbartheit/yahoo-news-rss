@@ -11,6 +11,7 @@ use yii\data\Pagination;
 
 use app\models\Feed;
 use app\models\FeedType;
+use yii\data\ActiveDataProvider;
 
 /**
  * FeedController implements the CRUD actions for Feed model.
@@ -291,7 +292,7 @@ class FeedController extends Controller
      * Search method.
      * 
      * @param string $keyword
-     * @return mixed
+     * @return json
      */
 	public function actionAjaxsearch($keyword){
 		$feeds = Feed::find()
@@ -306,5 +307,41 @@ class FeedController extends Controller
 		}
 
 		return json_encode($result);
+	}
+	
+	/**
+	 * Search method
+	 *
+	 * @param string $keyword
+	 * @return mixed
+	 */
+	public function actionSearch($keyword){
+		$keyword = trim($keyword);
+		$keyword = stripslashes($keyword);
+		$keyword = htmlspecialchars($keyword);
+		
+		$data = Feed::find();
+		
+        $data->orFilterWhere(['like', 'title', $keyword])
+            ->orFilterWhere(['like', 'description', $keyword]);
+
+		$pagination = new Pagination([
+			'defaultPageSize' => 6,
+			'totalCount' => $data->count(),
+		]);
+
+		$pageTitle = "Search results for keyword: " . $keyword;
+		
+		$feeds = $data->offset($pagination->offset)
+				->limit($pagination->limit)
+				->all();
+		
+		return $this->render('index', [
+			'feeds' => $feeds,
+			'pagination' => $pagination,
+			"pageTitle" => $pageTitle,
+		]);
+
+		
 	}
 }
