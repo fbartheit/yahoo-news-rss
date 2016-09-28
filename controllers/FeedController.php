@@ -301,7 +301,7 @@ class FeedController extends Controller
 			->andFilterWhere(['like', 'description', $keyword])
 			->limit(5)
 			->all();
-				
+
 		$result = "";
 		foreach($feeds as $f){
 			$result .= '<a href="';
