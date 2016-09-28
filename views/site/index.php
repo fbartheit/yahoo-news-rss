@@ -8,7 +8,7 @@ use yii\widgets\LinkPager;
 $this->title = 'Y-news - Home';
 ?>
 <div class="page-title">
-	<h1><?= Html::encode($pageTitle) ?></h1>
+	<h1><?= Html::encode($this->title) ?></h1>
 </div>
 <div>
 	<ul>

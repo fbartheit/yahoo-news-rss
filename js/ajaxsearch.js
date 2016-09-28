@@ -32,7 +32,7 @@ function search(keyword) {
     $.ajax({
         async: false,
         url: './index.php?r=feed/ajaxsearch',
-        type: 'POST',
+        type: 'GET',
         data: {keyword: keyword},
         success: function(data){
             result = data;

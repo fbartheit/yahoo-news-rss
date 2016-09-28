@@ -11,15 +11,15 @@ $("span[id$='_star']").click(function(e){
 			rating: rating
 		},
 		success: function(data){
-			var jsonData = JSON.parse(response);
-			if(jsonData.response === "OK"){
+			var jsonData = JSON.parse(data);
+			if(jsonData.result == "OK"){
 				styleRatingBar(feed_id, rating);
-				$("#"+feed_id+"_rating").append("<span>Thanks for voting!</span>");
+				$("#"+feed_id+"_rating_message").empty().html("Thanks for voting!");
 			}else{
-				if(jsonData.message === "NOK"){
-					$("#"+feed_id+"_rating").append("<span>An error occured.</span>");
+				if(jsonData.message == "NOK"){
+					$("#"+feed_id+"_rating_message").empty().html("An error occured.");
 				}else{
-					$("#"+feed_id+"_rating").append("<span>You already rated this article.</span>");
+					$("#"+feed_id+"_rating_message").empty().html("You already rated this article.");
 				}
 			}
 		}

@@ -126,7 +126,7 @@ class FeedController extends Controller
 					->where('feed_type.title=:type_title', array(':type_title'=>$pageTitle))
 					->orderBy('feed.date_posted');
 			}else{
-				$data = Feed::find()->orderBy('title')
+				$data = Feed::find()
 					->orderBy('feed.date_posted');
 			}
 			// store $data in cache so that it can be retrieved next time
@@ -187,12 +187,12 @@ class FeedController extends Controller
 			if($model->save()){
 				$arr[] = ''.$id;
 				setcookie('rated_articles', serialize($arr), 2147483647, '/');
-				return '{\"result\":\"OK\", \"message\":\"OK\"}';
+				return '{"result":"OK", "message":"OK"}';
 			}else{
-				return '{\"result\":\"NOK\", \"message\":\"NOK\"}';
+				return '{"result":"NOK", "message":"NOK"}';
 			}
 		}else{
-			return '{\"result\":\"NOK\", \"message\":\"Already rated this article.\"}';
+			return '{"result":"NOK", "message":"Already rated this article."}';
 		}
     }
 
@@ -257,7 +257,6 @@ class FeedController extends Controller
 		
 
 	}
-
 	
     /**
      * Deletes an existing Feed model.
@@ -294,8 +293,7 @@ class FeedController extends Controller
      * @param string $keyword
      * @return mixed
      */
-	public function actionAjaxsearch(){
-		$keyword = $_POST['keyword'];
+	public function actionAjaxsearch($keyword){
 		
 		$feeds = Feed::find()
 			->andFilterWhere(['like', 'description', $keyword])

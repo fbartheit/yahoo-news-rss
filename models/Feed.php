@@ -42,7 +42,7 @@ class Feed extends \yii\db\ActiveRecord
             [['title'], 'string', 'max' => 600],
             [['description'], 'string', 'max' => 2000],
             [['date_posted'], 'string', 'max' => 50],
-            [['link', 'image_link'], 'string', 'max' => 255],
+            [['link', 'image_link'], 'string', 'max' => 2000],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => FeedType::className(), 'targetAttribute' => ['type_id' => 'id']],
         ];
     }
