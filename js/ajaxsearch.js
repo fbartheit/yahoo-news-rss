@@ -29,6 +29,7 @@ $('body').click(function(e){
 	
 function search(keyword) {
     var result;
+    var success;
     $.ajax({
         async: false,
         url: './index.php?r=feed/ajaxsearch',
@@ -36,10 +37,25 @@ function search(keyword) {
         data: {keyword: keyword},
         success: function(data){
             result = data;
+            success = true;
         },
         error: function(data){
             result = "No search results.";
+            success = false;
         }
     });
+    
+    if (success) {
+        var output = "";
+        var parsed = JSON.parse(result);
+        parsed.forEach(function(i){
+                var item = JSON.parse(i);
+                var link = '<a href="' + item.link + '" target="_blank">' + item.title + '</a>';
+                output += link + "<br /><br />"
+        });
+        result = output;
+    }
+    
     return result;
+    
 }
