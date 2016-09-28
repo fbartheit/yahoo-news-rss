@@ -300,7 +300,6 @@ class FeedController extends Controller
 
 		
 		$feeds = Feed::find()
-		$feeds = Feed::find()
 			->andFilterWhere(['like', 'description', $keyword])
 			->limit(5)
 			->all();
@@ -322,25 +321,4 @@ class FeedController extends Controller
 		
 		return $result;
 	}
-	
-	private function dummy_feeds(){
-		$feeds = array();
-		
-		for($i=0; $i<20; $i++){
-			$feed1 = new Feed();
-			$feed1->id = "$i";
-			$feed1->title = "Feed $i";
-			$feed1->description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nisl lacus, condimentum ut nibh sit amet, tempor pretium massa. Fusce congue porttitor dolor ultrices dictum. Proin neque dolor, malesuada ac eleifend viverra, vehicula et metus. Fusce ultrices sollicitudin mollis. Cras vulputate, dui quis blandit pretium, enim urna venenatis velit, ut dictum mauris elit ac nisl. Phasellus accumsan lorem orci, vitae vestibulum mi  tincidunt vel. Praesent interdum lacus nec nunc ullamcorper, luctus egestas elit pulvinar.";
-			$feed1->date_posted = "Wed, 10 Feb 2016 00:13:20";
-			$feed1->rating = 4 + $i%2;
-			$feed1->num_views = "128";
-			$feed1->num_rates = "45";
-			$feed1["link"] = "http://www.google.com";
-			$feed1->image_link = "";
-			$feed1->type_id = 1 + $i%4;
-			$feeds[$i] = $feed1;
-		}
-		return $feeds;
-	}
-	
 }
