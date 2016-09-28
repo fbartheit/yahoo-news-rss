@@ -298,17 +298,13 @@ class FeedController extends Controller
 			->andFilterWhere(['like', 'description', $keyword])
 			->limit(5)
 			->all();
-
-		$result = "";
-		foreach($feeds as $f){
-			$result .= '<a href="';
-			$result .= $f->link;
-			$result .= '" target="_blank">';
-			$result .= $f->title;
-			$result .= '</a>';
-			$result .= '<br /><br />';
-		}
 		
-		return $result;
+		$result = [];
+		foreach($feeds as $f){
+			$var = '{"title":"' . $f->title . '", "link":"' . $f->link . '"}';
+			array_push($result, $var);
+		}
+
+		return json_encode($result);
 	}
 }
