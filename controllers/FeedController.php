@@ -288,18 +288,26 @@ class FeedController extends Controller
         }
     }
 	
-	public function actionAjaxsearch(){
-		$keyword = $_POST['keyword'];
+	/**
+     * Search method.
+     * 
+     * @param string $keyword
+     * @return mixed
+     */
+	public function actionAjaxsearch($keyword){
+		//$keyword = $_POST['keyword'];
+		//var_dump($keyword);
 		
-		/*$feeds = Feed::find()
+		$feeds = Feed::find()
 			->andFilterWhere(['like', 'description', $keyword])
 			->limit(5)
-			->all();*/
+			->all();
 			
-		$feeds = Feed::findAll(
+		/*$feeds = Feed::findAll(
 			'description LIKE :match',
 			array(':match' => "%$keyword%")
 		);
+		var_dump($feeds);*/
 				
 		$result = "";
 		foreach($feeds as $f){
