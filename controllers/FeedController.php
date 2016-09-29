@@ -114,7 +114,7 @@ class FeedController extends Controller
 		$page = Yii::$app->request->get('page', 1);
 		$key = 'category_'.$pageTitle.'_page_'.$page;
 		$data = Yii::$app->cache->get($key);
-		
+				
 		$data_cached = true;
 		if($data === false){
 			$data_cached = false;
@@ -125,10 +125,10 @@ class FeedController extends Controller
 				$data = Feed::find()
 					->join('LEFT JOIN', 'feed_type', 'feed.type_id=feed_type.id')
 					->where('feed_type.title=:type_title', array(':type_title'=>$pageTitle))
-					->orderBy('feed.date_posted');
+					->orderBy(['date_posted' => SORT_DESC]);
 			}else{
 				$data = Feed::find()
-					->orderBy('feed.date_posted');
+					->orderBy(['date_posted' => SORT_DESC]);
 			}
 			// store $data in cache so that it can be retrieved next time
 		}
