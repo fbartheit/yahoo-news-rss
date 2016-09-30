@@ -112,14 +112,15 @@ class FeedController extends Controller
 	 */
 	private function renderCategory($pageTitle){
 		$page = Yii::$app->request->get('page', 1);
-		$key = 'category_'.$pageTitle.'_page_'.$page;
-		$data = Yii::$app->cache->get($key);
+		$data_key = 'category_'.$pageTitle.'_page_'.$page;
+		$size_key = 'category_'.$pageTitle.'_count';
+		$data = Yii::$app->cache->get($data_key);
 				
 		$data_cached = true;
 		if($data === false){
 			$data_cached = false;
 		}
-		if (!$data_cached) {
+		if(!$data_cached) {
 			// $data is not found in cache, calculate it from scratch
 			if($pageTitle != "Home"){
 				$data = Feed::find()
@@ -130,23 +131,35 @@ class FeedController extends Controller
 				$data = Feed::find()
 					->orderBy(['date_posted' => SORT_DESC]);
 			}
+			$data_size = $data->count();
+			
 			// store $data in cache so that it can be retrieved next time
+		}else{
+			$data_size = Yii::$app->cache->get($size_key);
 		}
-
-		// $data is available here
 		
+		// $data is available here
 		$pagination = new Pagination([
 			'defaultPageSize' => 6,
-			'totalCount' => $data->count(),
+			'totalCount' => $data_size,
 		]);
 		
 		// apply pagination offsets
-			$feeds = $data->offset($pagination->offset)
-				->limit($pagination->limit)
-				->all();
+		/* $feeds = $data->offset($pagination->offset)
+			->limit($pagination->limit)
+			->all();*/
 		
 		if(!$data_cached){ // cache paged data if it was calculated from scratch
-			Yii::$app->cache->set($key, $data);
+			$feeds = $data->offset($pagination->offset)
+			->limit($pagination->limit)
+			->all();
+			
+			Yii::$app->cache->set($data_key, $feeds);
+			if(Yii::$app->cache->get($size_key) === false){
+				Yii::$app->cache->set($size_key, $data_size);
+			}
+		}else{
+			$feeds = $data;
 		}
 			
 		return $this->render('index', [
