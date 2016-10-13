@@ -10,6 +10,7 @@ use yii\filters\VerbFilter;
 use yii\data\Pagination;
 
 use app\models\Feed;
+use app\models\StaticPage;
 use app\models\FeedType;
 use yii\data\ActiveDataProvider;
 
@@ -39,15 +40,26 @@ class FeedController extends Controller
      */
     public function actionIndex()
     {
-        /*$searchModel = new FeedSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);*/
-		$pageTitle = "Home";
-		return $this->renderCategory($pageTitle);
+        $pageTitle = "Home";
+        return $this->renderCategory($pageTitle);
+    }
+    
+    /**
+     * Index method.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionStatic($id){
+        $staticPage = StaticPage::find()->where(['id'=>$id])->one();
+        if($staticPage == null){
+            return $this->render('error', [
+                'name' => '404 Not found',
+                'message' => '404 Page not found!'
+            ]);
+        }
+        return $this->render('static', [
+            'staticPage' => $staticPage
+        ]);
     }
 	
 	/**
