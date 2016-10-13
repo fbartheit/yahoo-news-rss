@@ -14,5 +14,6 @@ class Game
     public $game_technology;
     public $game_instruction;
     public $game_description;
-        
+    public $game_screenshot_1;
+    
 }
