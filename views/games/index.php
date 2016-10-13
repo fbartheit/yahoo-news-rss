@@ -11,26 +11,28 @@ $this->title = 'Games';
 <div class="page-title">
 	<h1>Games</h1>
 </div>
-<div class="container-fluid">
+<div class="container-fluid panel">
 	<?php $i=0;
 		foreach($games as $game){
-			
-			if($i % 4 === 0){ ?>
+			if($i % 4 == 0){
+				if($i != 0){ ?>
+					</div>
+					<?php
+				}
+				?>
 				<div class="row feed_row">
 			<?php } ?>
-					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<div class="col-md-3">
 							<?= GamesWidget::widget(['game'=>$game]) ?>
 					</div>
-			<?php if($i % 4 !== 0){ ?>
-				</div>
 			<?php
-				}
+			
 			$i++;
 		}
 	?>
-	
+
 </div>
 
 <div class="pager_holder">
-<?php //<?= LinkPager::widget(['pagination' => $pagination]); ?>
+<?= LinkPager::widget(['pagination' => $pagination]); ?>
 </div>

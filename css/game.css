@@ -1,0 +1,36 @@
+#gameplay .game-text .con-md-12 .con-md-8{
+    text-align: left;
+    font-size: 13px;
+    font-family: 'Arial';
+    color: #000000;
+    margin-top: 10px;
+    padding: 0px;
+}
+
+#gameplay .game-text span {
+    font-weight: bold;
+    font-size: 14px;
+}
+#gameplay .con-md-12 .con-md-8{
+    float: left;
+    width: 66.66666667%;
+ 
+}
+#gameplay .con-md-12 .con-md-4{
+    overflow: hidden;
+}
+
+#gameplay .gametitle{
+    width: 49%;
+    display: inline-block;
+    float: left;
+    text-align: left;
+}
+
+#gameplay .fblink{
+    float: right;
+    text-align: right;
+    padding-top: 10px;
+    width: 49%;
+    display: inline-block;
+}

@@ -59,6 +59,10 @@ h4{
 	color: #7b2e00;
 }
 
+.wrap{
+    min-height: 80%;
+}
+
 .wrap > .container{
 	padding: 15px 15px 20px;
 }
@@ -101,10 +105,6 @@ h4{
 .navbar-inverse .navbar-nav > li:hover > a{
 	color: #d5c68a;
 	background-color: black;
-}
-
-.navbar-inverse .navbar-nav > li:last-child > a{
-    color:red;
 }
 
 .legal_container{
@@ -279,6 +279,10 @@ h4{
 #w2 ul{
 	display: inline;
 }
+.navbar-inverse .navbar-nav > li:last-child > a {
+    color: red;
+}
+
 
 @media (max-width: 704px){
 	#contact-form label{
@@ -400,4 +404,7 @@ h4{
 
 .popover-content a{
 	color: #7b2e00;
+}
+.game-image {
+	margin-bottom: 10px;
 }
