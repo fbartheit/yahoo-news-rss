@@ -31,7 +31,6 @@ $this->title = 'Games';
 		}
 	?>
 
-	
 </div>
 
 <div class="pager_holder">
