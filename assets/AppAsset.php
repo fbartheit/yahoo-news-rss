@@ -21,6 +21,7 @@ class AppAsset extends AssetBundle
         'css/site.css',
 		'css/style.css',
 		'css/feed.css',
+                'css/game.css',
     ];
     public $js = [
 		'js/ascript.js',
