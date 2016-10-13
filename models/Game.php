@@ -8,6 +8,6 @@ class Game
 {
     public $game_id;
     public $game_name;
-    public $game_image_1;
-        
+    public $game_screenshot_1;
+    
 }
