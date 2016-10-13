@@ -103,7 +103,22 @@ h4{
 	background-color: black;
 }
 
+.navbar-inverse .navbar-nav > li:last-child > a{
+    color:red;
+}
 
+.legal_container{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.legal_container > div {
+    text-align: center;
+}
+
+.legal_container >div > a{
+    color: #d5c68a;
+}
 
 .zigzag {
 	background: linear-gradient(135deg, #000000 8px, transparent 0), linear-gradient(-135deg, #000000 8px, transparent 0);

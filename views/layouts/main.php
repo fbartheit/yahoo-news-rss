@@ -69,6 +69,7 @@ AppAsset::register($this);
 			['label' => 'Health', 'url' => ['/feed/health']],
 			['label' => 'About Us', 'url' => ['/site/about']],
 			['label' => 'Contact', 'url' => ['/site/contact']],
+                        ['label' => 'Games', 'url' => ['/games/index']],
         ],
     ]); ?>
 	
@@ -93,21 +94,39 @@ AppAsset::register($this);
     <div class="container">
         <?= $content ?>
     </div>
+        
 </div>
+
 <div class="container">
-	<footer class="footer">
-		<p class="footer-text">Copyright &copy; <?= date('Y') ?> by <strong>Y-news</strong> All rights reserved</p>
-		
-		<?php 
-			echo Nav::widget([
-				'options' => ['class' => 'navbar-nav navbar-right'],
-				'items' => [
-					['label' => 'Home', 'url' => ['/feed/index']],
-					['label' => 'About Us', 'url' => ['/site/about']],
-					['label' => 'Contact', 'url' => ['/site/contact']],
-			  ],
-			]); ?>
-	</footer>
+    <div class="row panel legal_container">
+        <div class="col-md-6 col-xs-12">
+            <?= Html::a('Browser Optimization', ['feed/static', 'id' => 956], ['class' => '']) ?><br/>
+            <?= Html::a('Unsubscribe', ['feed/static', 'id' => 957], ['class' => '']) ?><br/>
+            <?= Html::a('About Us', ['feed/static', 'id' => 964], ['class' => '']) ?><br/>
+        </div>
+        <div class="col-md-6 col-xs-12">
+            
+            
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <?= Html::a('Privacy Policy', ['feed/static', 'id' => 1306], ['class' => '']) ?><br/>
+            <?= Html::a('Copyright Policy', ['feed/static', 'id' => 963], ['class' => '']) ?><br/>
+            <?= Html::a('Terms of Use', ['feed/static', 'id' => 1307], ['class' => '']) ?><br/>
+        </div>
+    </div>
+    <footer class="footer">
+        <p class="footer-text">Copyright &copy; <?= date('Y') ?> by <strong>Y-news</strong> All rights reserved</p>
+
+        <?php 
+            echo Nav::widget([
+                    'options' => ['class' => 'navbar-nav navbar-right'],
+                    'items' => [
+                            ['label' => 'Home', 'url' => ['/feed/index']],
+                            ['label' => 'About Us', 'url' => ['/site/about']],
+                            ['label' => 'Contact', 'url' => ['/site/contact']],
+              ],
+            ]); ?>
+    </footer>
 </div>
 
 <?php $this->endBody() ?>
