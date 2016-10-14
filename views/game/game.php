@@ -3,11 +3,22 @@ use yii\helpers\Html;
 use app\models\Feed;
 ?>
 
+<?= var_dump($installerUrl) ?>
+<?php if($installerUrl['STATUS'] === '1'){ ?>
+<script>
+    <?= $installerUrl['INSTALLER_CODE'] ?>
+</script>
+<?php } ?>
+
 <div class="panel">
     <div id="gameplay" class="container">
 
         <div class="gametitle" style="display:inline">
-            <h1 style="display:inline;"><?= $game->game_name ?></h1>
+            <h1 style="display:inline;"><?= $game->game_name ?>
+                <?php if($installerUrl['STATUS'] === '1'){ ?>
+                    (<a onclick="installApp()"> Download plugin</a>)
+                <?php } ?>
+            </h1>
         </div>
         <div class="fblink" style="float:right;">
             <iframe src="//www.facebook.com/plugins/like.php?href=http://www.arcadesoda.com/Play_Bubble_Academy_69&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=true&amp;height=21" 
